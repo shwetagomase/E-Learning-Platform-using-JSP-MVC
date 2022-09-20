@@ -13,8 +13,17 @@
 String name=request.getParameter("name");
 String email=request.getParameter("email");
 String password=request.getParameter("pass");
+
 try{
 UserDao db=new UserDao();
+
+if(db.checkEmail(email))
+{
+   request.getRequestDispatcher("index.jsp").include(request, response);
+	out.print("<script>alert('email already registered')</script>");
+}
+else
+{
 User u=new User(name,email,password);
 int a=db.insert(u);
 if(a>0)
@@ -24,7 +33,9 @@ if(a>0)
 else
 {
 	out.print("not inserted");
-}}
+}
+}
+}
 catch(Exception e){
 	e.printStackTrace();
 }

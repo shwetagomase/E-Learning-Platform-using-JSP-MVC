@@ -47,4 +47,17 @@ boolean a=rs.absolute(1);
 		return a;
 	}
 
+	public boolean checkEmail(String email) throws SQLException, ClassNotFoundException
+	{
+		String sql="select * from user where email=? ";
+		con=getConnect();
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, email);
+		ResultSet rs=ps.executeQuery();
+
+        boolean a=rs.absolute(1);
+
+		return a;
+	}
+
 }
