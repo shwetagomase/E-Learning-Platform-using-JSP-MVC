@@ -22,7 +22,7 @@ if(a)
 else
 {
 	out.print("<script>alert('wrong username and password')</script>");
-	 request.getRequestDispatcher("login.jsp").include(request, response);
+	request.getRequestDispatcher("login.jsp").include(request, response);
 }}
 catch(Exception e){
 	e.printStackTrace();
