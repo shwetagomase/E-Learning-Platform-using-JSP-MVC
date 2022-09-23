@@ -15,6 +15,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<% 
+if (session.getAttribute("email")!=null)
+{
+	response.sendRedirect("profile.jsp");
+}
+else
+{
+%>
 <%@ include file="navbar.html" %>
     <div class="main">
 
@@ -64,6 +73,6 @@
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
-
+<% }%>
 </body>
 </html>

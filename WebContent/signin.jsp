@@ -17,7 +17,12 @@ UserDao db=new UserDao();
 boolean a=db.checkUser(email,password);
 if(a)
 {
-	out.print("welcome user : "+email);
+	//adding username and password in session object
+	session.setAttribute("email", email);
+	session.setAttribute("pass", password);
+	//end session
+		response.sendRedirect("profile.jsp");//we are adding profile-done
+
 }
 else
 {

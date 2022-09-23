@@ -19,8 +19,9 @@ UserDao db=new UserDao();
 
 if(db.checkEmail(email))
 {
-   request.getRequestDispatcher("index.jsp").include(request, response);
 	out.print("<script>alert('email already registered')</script>");
+    request.getRequestDispatcher("index.jsp").include(request, response);
+
 }
 else
 {
@@ -28,8 +29,10 @@ User u=new User(name,email,password);
 int a=db.insert(u);
 if(a>0)
 {
-	out.print("data inserted");
-}
+	out.print("<script>alert('data inserted')</script>");
+    request.getRequestDispatcher("login.jsp").include(request, response);
+
+	}
 else
 {
 	out.print("not inserted");
