@@ -60,4 +60,18 @@ boolean a=rs.absolute(1);
 		return a;
 	}
 
+	public int studentCount() throws SQLException, ClassNotFoundException
+	{
+		String sql="select count(*) from user ";
+		con=getConnect();
+		PreparedStatement ps=con.prepareStatement(sql);
+		ResultSet rs=ps.executeQuery();
+rs.next();
+        int count =rs.getInt(1);
+con.close();
+		return count;
+	}
 }
+
+
+
