@@ -5,11 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
 
-	Connection con;
-	private Connection getConnect() throws ClassNotFoundException, SQLException 
+	static Connection con;
+	private static Connection getConnect() throws ClassNotFoundException, SQLException 
 	{
 		String db="jspmvc1";
 		String url="jdbc:mysql://localhost:3306/"+db;
@@ -71,6 +73,33 @@ rs.next();
 con.close();
 		return count;
 	}
+	
+	public static  List<User> ShowData()
+	{
+		List<User> list=new ArrayList<User>();
+		try
+		{
+			String sql = "select * from user";
+			con=getConnect();		
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery("select * from user");
+			while(rs.next())
+			{				
+				User s=new User();
+				s.setUid(rs.getInt(1));
+				s.setName(rs.getString(2));
+				s.setEmail(rs.getString(3));
+				s.setPassword(rs.getString(4));
+                list.add(s);
+			}		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 }
 
 

@@ -1,3 +1,6 @@
+<%@page import="model.PurchaseDao"%>
+<%@page import="model.MentorDao"%>
+<%@page import="model.AdminDao"%>
 <%@page import="model.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -467,9 +470,11 @@
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
-                      <p class="fs-30 mb-2">61344</p>
-                      <p>22.00% (30 days)</p>
+                      <p class="mb-4">Total Courses Available</p>
+                      <p class="fs-30 mb-2">
+                      <%=new AdminDao().courseCount() %>
+                      </p>
+                      <p>courses count</p>
                     </div>
                   </div>
                 </div>
@@ -478,24 +483,61 @@
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
-                      <p class="fs-30 mb-2">34040</p>
-                      <p>2.00% (30 days)</p>
+                      <p class="mb-4">Total Courses Purchase</p>
+                      <p class="fs-30 mb-2">
+                      <%=new PurchaseDao().purchaseCount() %>
+                      </p>
+                      <p>courses purchase count</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">47033</p>
-                      <p>0.22% (30 days)</p>
+                      <p class="mb-4">Total Mentors</p>
+                      <p class="fs-30 mb-2">
+                      <%=new MentorDao().mentorCount() %>
+                      </p>
+                      <p> mentors count</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+                    <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Id</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Password</th>
+                              <th>Premium</th>
+                              <th>Status</th>
+                              <th>Updated at</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+          
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
