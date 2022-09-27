@@ -74,33 +74,31 @@ con.close();
 		return count;
 	}
 	
-	public static  List<User> ShowData()
+	public List<User> geAllUser() throws SQLException, ClassNotFoundException
 	{
-		List<User> list=new ArrayList<User>();
-		try
+		String sql="select * from user ";
+		con=getConnect();
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs=ps.executeQuery();
+		
+		List<User> uls=new ArrayList<User>();
+		
+		while(rs.next())
 		{
-			String sql = "select * from user";
-			con=getConnect();		
-			PreparedStatement ps=con.prepareStatement(sql);
-			ResultSet rs=ps.executeQuery("select * from user");
-			while(rs.next())
-			{				
-				User s=new User();
-				s.setUid(rs.getInt(1));
-				s.setName(rs.getString(2));
-				s.setEmail(rs.getString(3));
-				s.setPassword(rs.getString(4));
-                list.add(s);
-			}		
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return list;
+			User u=new User();
+			u.setUid(rs.getInt(1));
+			u.setName(rs.getString(2));
+			u.setEmail(rs.getString(3));
+			u.setPassword(rs.getString(4));
+			
+			uls.add(u);
+		}				
+   con.close();
+    return uls;
 	}
 	
-}
+	}
 
 
 

@@ -1,3 +1,5 @@
+<%@page import="model.User"%>
+<%@page import="java.util.List"%>
 <%@page import="model.PurchaseDao"%>
 <%@page import="model.MentorDao"%>
 <%@page import="model.AdminDao"%>
@@ -412,7 +414,7 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Aamir</h3>
+                  <h3 class="font-weight-bold">Welcome Admin</h3>
                   <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
@@ -516,7 +518,7 @@
                         <table id="example" class="display expandable-table" style="width:100%">
                           <thead>
                             <tr>
-                              <th>Id</th>
+                              <th>User Id #</th>
                               <th>Name</th>
                               <th>Email</th>
                               <th>Password</th>
@@ -526,6 +528,22 @@
                               <th></th>
                             </tr>
                           </thead>
+                          <%
+                          List<User> uls=new UserDao().geAllUser();
+                          for(User u:uls)
+                          {
+                          %>
+                           <tr>
+                              <td><%=u.getUid() %></td>
+                              <td><%=u.getName() %></td>
+                              <td><%=u.getEmail() %></td>
+                              <td><%=u.getPassword() %></td>
+                              <td>Premium</td>
+                              <td>Status</td>
+                              <td>Updated at</td>
+                              <td></td>
+                            </tr>
+                            <%} %>
                           
                       </table>
                       </div>
