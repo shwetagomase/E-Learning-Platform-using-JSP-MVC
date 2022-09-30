@@ -187,8 +187,10 @@ h2 {
 
 .main {
   background: #f8f8f8;
-  padding: 150px 0; }
+  padding: 150px 0;
 
+  }
+  
 .clear {
   clear: both; }
 
@@ -289,8 +291,6 @@ figure {
   .form-submit:hover {
     background: #4292dc; }
 
-#signin {
-  margin-top: 16px; }
 
 .signup-image-link {
   font-size: 14px;
