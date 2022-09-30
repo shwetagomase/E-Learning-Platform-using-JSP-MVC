@@ -1,3 +1,5 @@
+<%@page import="model.Course"%>
+<%@page import="model.CourseDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="com.oreilly.servlet.MultipartRequest" %>  
@@ -16,13 +18,8 @@ String category=request.getParameter("category");
 String totalenroll=request.getParameter("totalenroll");
 String fees=request.getParameter("fees");
 String imgurl=request.getParameter("imgurl");
-%>
-<%--
-MultipartRequest m = new MultipartRequest(request, "C:\\upload");  
-out.print("successfully uploaded");  
-  
---%>
 
+%>
 <%=coursetitle %>
 <%=instructor %>
 <%=category %>
@@ -30,5 +27,26 @@ out.print("successfully uploaded");
 <%=fees %>
 <%=imgurl %>
 
+<form action="upload.jsp" method="post" enctype="multipart/form-data">
+<input type="file" name="imgurl" ><br/><br/>         
+ <input type="submit" > <br/> <br/> 
+</form>
+<%try{
+	CourseDao db=new CourseDao();
+    Course u=new Course(coursetitle, instructor, category, totalenroll, fees, imgurl);
+int a=db.insert(u);
+if(a>0)
+{
+	out.print("<script>alert('data inserted')</script>");
+	}
+else
+{
+	out.print("not inserted");
+}
+}
+catch(Exception e){
+	e.printStackTrace();
+}
+ %>
 </body>
 </html>
