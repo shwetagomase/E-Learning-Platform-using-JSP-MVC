@@ -3,6 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CourseDao 
@@ -36,5 +37,25 @@ public class CourseDao
 		return a;	
 	}
 	
-	
+	public Course geCourse(int cid) throws SQLException, ClassNotFoundException
+	{
+		String sql="select * from courses where cid="+cid;
+		con=getConnect();
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		ResultSet rs=ps.executeQuery();
+		Course c=new Course();
+		if(rs.absolute(1))
+		{
+			c.setCoursetitle(rs.getString(2));
+			c.setInstructor(rs.getString(3));
+			c.setCategory(rs.getString(4));
+			c.setTotalenroll(rs.getString(5));
+			c.setFees(rs.getString(6));
+			c.setImgurl(rs.getString(7));
+		}
+   con.close();
+    return c;
+	}
+
 }

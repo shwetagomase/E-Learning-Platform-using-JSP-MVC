@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import model.Course;
+import model.CourseDao;
 @MultipartConfig
 @WebServlet("/uploadservlet")
 public class UploadServlet extends HttpServlet {
@@ -74,11 +77,27 @@ private String getInitParameter(Part part) {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  processRequest(request, response);
+		  PrintWriter out=response.getWriter();
 		  String coursetitle=request.getParameter("coursetitle");
 		  String instructor=request.getParameter("instructor");
 		  String category=request.getParameter("category");
 		  String totalenroll=request.getParameter("totalenroll");
 		  String fees=request.getParameter("fees");
-		  String imgurl=request.getParameter("imgurl");
+		  try{
+				CourseDao db=new CourseDao();
+			    Course u=new Course(coursetitle, instructor, category, totalenroll, fees, fileName);
+			int a=db.insert(u);
+			if(a>0)
+			{
+				out.print("course added");
+				}
+			else
+			{
+				out.print("problem occured while adding course");
+			}
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 }
 }
